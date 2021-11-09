@@ -1,4 +1,4 @@
-stage:
+stages:
   - build
   - tests
 
@@ -19,3 +19,15 @@ build:
   only:
     - master
 
+tests:
+  stage: tests
+  image: node:14
+  script:
+    - npm install
+    - npm install -g @angular/cli
+    - ng test
+  cache:
+    paths:
+      - ./node_modules
+  only:
+    - master
