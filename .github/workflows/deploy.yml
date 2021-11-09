@@ -25,5 +25,8 @@ jobs:
       - name: "Build app"
         run: npm run build
 
+      - name: "Setup chromedriver"
+        uses: nanasess/setup-chromedriver@master
+
       - name: "Run tests"
         run: npm run test --no-watch --no-progress
