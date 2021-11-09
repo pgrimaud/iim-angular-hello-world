@@ -1,3 +1,7 @@
+stage:
+  - build
+  - tests
+
 build:
   stage: build
   image: node:14
