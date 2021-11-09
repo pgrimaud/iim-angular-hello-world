@@ -26,8 +26,6 @@ tests:
     - npm install
     - npm install -g @angular/cli
     - ng test
-  cache:
-    paths:
-      - ./node_modules
+  cache: []
   only:
     - master
