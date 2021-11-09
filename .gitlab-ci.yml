@@ -1,33 +1,43 @@
 stages:
-  - tests
-  #- build
+  - build
+  - deploy
+#  - tests
 
-#build:
-#  stage: build
-#  image: node:14
-#  script:
-#    - npm install
-#    - npm install -g @angular/cli
-#    - ng build
-#  cache:
-#    paths:
-#      - ./node_modules
-#  artifacts:
-#    expire_in: 1 hour
-#    paths:
-#      - ./dist/hello-world
-#  only:
-#    - master
-
-tests:
-  stage: tests
-  image: circleci/node:14-browsers
+build:
+  stage: build
+  image: node:14
   script:
-    - sudo npm install
-    - sudo npm install -g @angular/cli
-    - ng test --no-watch --no-progress
+    - npm install
+    - npm install -g @angular/cli
+    - ng build
   cache:
     paths:
       - ./node_modules
+  artifacts:
+    expire_in: 1 hour
+    paths:
+      - ./dist/hello-world
+  only:
+    - master
+
+#tests:
+#  stage: tests
+#  image: circleci/node:14-browsers
+#  script:
+#    - sudo npm install
+#    - sudo npm install -g @angular/cli
+#    - ng test --no-watch --no-progress
+#  cache:
+#    paths:
+#      - ./node_modules
+#  only:
+#    - master
+
+deploy:
+  stage: deploy
+  image: ruby:2.7
+  script:
+    - gem install dpl
+    - dpl --provider=heroku --app=$HEROKU_APP --api-key=$HEROKU_API_KEY --skip_cleanup=true
   only:
     - master
