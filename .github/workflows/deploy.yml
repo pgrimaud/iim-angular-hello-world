@@ -25,8 +25,5 @@ jobs:
       - name: "Build app"
         run: npm run build
 
-      - name: "Setup chromedriver"
-        run: sudo apt-get install chromium-browser
-
       - name: "Run tests"
-        run: npm run test --no-watch --no-progress
+        run: npm run test --no-watch --no-progress --browsers=ChromeHeadlessCI
