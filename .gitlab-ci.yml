@@ -1,5 +1,5 @@
 stages:
-  - build
+  #- build
   - tests
 
 build:
@@ -21,7 +21,7 @@ build:
 
 tests:
   stage: tests
-  image: node:14
+  image: circleci/node:14-browsers
   script:
     - npm install
     - npm install -g @angular/cli
