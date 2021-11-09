@@ -1,7 +1,7 @@
 stages:
   - build
+  - tests
   - deploy
-#  - tests
 
 build:
   stage: build
@@ -20,18 +20,18 @@ build:
   only:
     - master
 
-#tests:
-#  stage: tests
-#  image: circleci/node:14-browsers
-#  script:
-#    - sudo npm install
-#    - sudo npm install -g @angular/cli
-#    - ng test --no-watch --no-progress
-#  cache:
-#    paths:
-#      - ./node_modules
-#  only:
-#    - master
+tests:
+  stage: tests
+  image: circleci/node:14-browsers
+  script:
+    - sudo npm install
+    - sudo npm install -g @angular/cli
+    - ng test --no-watch --no-progress
+  cache:
+    paths:
+      - ./node_modules
+  only:
+    - master
 
 deploy:
   stage: deploy
