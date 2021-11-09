@@ -23,8 +23,8 @@ tests:
   stage: tests
   image: circleci/node:14-browsers
   script:
-    - npm install
-    - npm install -g @angular/cli
+    - sudo npm install
+    - sudo npm install -g @angular/cli
     - ng test
   cache: []
   only:
