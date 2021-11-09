@@ -25,7 +25,9 @@ tests:
   script:
     - sudo npm install
     - sudo npm install -g @angular/cli
-    - ng test
-  cache: []
+    - ng test --no-watch --no-progress
+  cache:
+    paths:
+      - ./node_modules
   only:
     - master
